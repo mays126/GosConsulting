@@ -1,0 +1,25 @@
+data_directory: ../knowledge_base
+chunk_size: 1000
+chunk_overlap: 200
+
+qdrant_collection_name: my_rag_collection_v3
+qdrant_prefer_grpc: True
+qdrant_api_key: null # Или ваш API ключ Qdrant Cloud
+
+# --- Параметры Google Gemini ---
+google_api_key: AIzaSyCJ2KNxwb4dNIf9-liPZ5TqAbVsBx1W2UU  # Или установите переменную окружения GOOGLE_API_KEY
+embedding_model_name: models/text-embedding-004 # Можно использовать другие модели, но убедитесь, что vector_size совпадает
+vector_size: 768 # Размер векторов для models/embedding-004. ОБЯЗАТЕЛЬНО ДОЛЖЕН СООТВЕТСТВОВАТЬ МОДЕЛИ ЭМБЕДДИНГОВ!
+chat_model_name: gemini-2.0-flash # Или gemini-1.5-pro-latest, gemini-1.5-flash-latest и т.д.
+llm_temperature: 0.1
+# --- Конец параметров Google Gemini ---
+
+search_k: 5
+search_type: mmr # или mmr
+relevance_threshold: 0.3 # Для LLM ранжирования
+
+log_level: DEBUG # DEBUG, INFO, WARNING, ERROR
+
+enable_query_regeneration: True
+enable_llm_ranking: True
+
