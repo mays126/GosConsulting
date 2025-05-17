@@ -1,4 +1,4 @@
-data_directory: ../knowledge_base
+data_directory: knowledge_base
 chunk_size: 1000
 chunk_overlap: 200
 

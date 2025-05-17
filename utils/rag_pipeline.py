@@ -35,7 +35,7 @@ from tqdm.asyncio import tqdm
 from tenacity import retry, stop_after_attempt, wait_exponential, RetryError
 
 # --- Configuration ---
-DEFAULT_CONFIG_PATH = "config.yaml"
+DEFAULT_CONFIG_PATH = "utils/config.yaml"
 
 # --- Константы для метаданных ---
 META_SOURCE_FILE_NAME = "source_file_name"
