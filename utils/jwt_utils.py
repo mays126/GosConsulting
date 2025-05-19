@@ -57,9 +57,7 @@ def get_current_user(
         creds: HTTPAuthorizationCredentials = Depends(http_bearer)
 ) -> Dict:
     token = creds.credentials
-    print(token)
     payload = decode_jwt(token)
-    print(payload)
     if payload is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

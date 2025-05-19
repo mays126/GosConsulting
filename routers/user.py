@@ -1,5 +1,6 @@
 import os
 from contextlib import asynccontextmanager
+from typing import List
 
 from fastapi import APIRouter, Cookie, Depends, FastAPI
 from sqlalchemy.orm import Session
@@ -11,7 +12,7 @@ from controllers.auth import (
 from controllers.user import *
 
 from models.core import init_models
-from models.schemas import UserCreate, Token, LLMQuestion
+from models.schemas import UserCreate, Token, LLMQuestion, HistoryModel
 from models.database import get_session
 from utils import rag_pipeline
 from utils.jwt_utils import get_current_user
@@ -42,3 +43,7 @@ async def logout(refresh_token: str = Cookie(None), db: Session = Depends(get_se
 @router.post("/send_request")
 async def send_request(question: LLMQuestion, current_user = Depends(get_current_user),session: Session = Depends(get_session)):
     return await send_question(int(current_user.get("sub")),question,session)
+
+@router.get("/get_history", response_model=List[HistoryItem])
+async def get_history(current_user = Depends(get_current_user),db: Session = Depends(get_session)):
+    return await get_requests_history(int(current_user.get("sub")),db)

@@ -20,3 +20,11 @@ class LLMQuestion(BaseModel):
 
 class LLMAnswer(BaseModel):
     answer: str
+
+class HistoryItem(BaseModel):
+    id: int
+    question: str
+    answer: str
+
+class HistoryModel(BaseModel):
+    history: list[HistoryItem]

@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import select, delete
 from datetime import timedelta
 from fastapi.responses import JSONResponse
-from models.schemas import LLMQuestion
+from models.schemas import LLMQuestion, HistoryItem
 from models.core import Request, init_models
 from utils import rag_pipeline
 
@@ -47,6 +47,7 @@ async def lifespan(application: FastAPI):
 
 async def send_question(user_id, question: LLMQuestion, db: Session):
     answer = await pipeline.run_pipeline(question.question, force_reindex=False)
+    answer.replace("\n","")
     if answer:
         llm_answer = Request(
             question = question.question,
@@ -60,3 +61,17 @@ async def send_question(user_id, question: LLMQuestion, db: Session):
         raise HTTPException(status_code=501, detail="Smth went wrong with LLM")
     return answer
 
+async def get_requests_history(user_id, session: Session):
+    query = select(Request).where(Request.user_id == user_id).order_by(Request.id.desc()).limit(10)
+    result = session.execute(query)
+    history = result.scalars().all()
+
+    final_result = []
+    for request in history:
+        final_result.append(HistoryItem(
+            id=request.id,
+            question = request.question,
+            answer = request.answer.strip()
+        ))
+
+    return final_result

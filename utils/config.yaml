@@ -11,7 +11,7 @@ google_api_key: AIzaSyCJ2KNxwb4dNIf9-liPZ5TqAbVsBx1W2UU  # Или установ
 embedding_model_name: models/text-embedding-004 # Можно использовать другие модели, но убедитесь, что vector_size совпадает
 vector_size: 768 # Размер векторов для models/embedding-004. ОБЯЗАТЕЛЬНО ДОЛЖЕН СООТВЕТСТВОВАТЬ МОДЕЛИ ЭМБЕДДИНГОВ!
 chat_model_name: gemini-2.0-flash # Или gemini-1.5-pro-latest, gemini-1.5-flash-latest и т.д.
-llm_temperature: 0.1
+llm_temperature: 0.8
 # --- Конец параметров Google Gemini ---
 
 search_k: 5
