@@ -16,7 +16,7 @@ llm_temperature: 0.8
 
 search_k: 5
 search_type: mmr # или mmr
-relevance_threshold: 0.3 # Для LLM ранжирования
+relevance_threshold: 0.1 # Для LLM ранжирования
 
 log_level: DEBUG # DEBUG, INFO, WARNING, ERROR
 
