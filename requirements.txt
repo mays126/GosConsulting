@@ -1,0 +1,23 @@
+# Core dependencies
+langchain
+langchain-openai
+langchain-community
+langchain-text-splitters
+
+# Vector store
+faiss-cpu
+
+# Document loaders
+unstructured
+pypdf
+python-docx
+
+# Utilities
+pyyaml
+python-dotenv
+tqdm
+tenacity
+pydantic
+
+# OpenAI tokenizer
+tiktoken
